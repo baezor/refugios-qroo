@@ -1,0 +1,24 @@
+{
+  "shelters": [
+    {
+      "id": 0,
+      "locality": "CANCUN",
+      "municipality": "BENITO JUÁREZ",
+      "building": "AÑO DEL CENTENARIO DE Q. ROO",
+      "address": "CALLE 66 ENTRE 69 Y AV. LÁZARO CÁRDENAS #783",
+      "latitude": "20.5668582",
+      "longitude": "-88.6397632",
+      "gmaps_link": "https://maps.app.goo.gl/74qUkS9ntDthFe2B7"
+    },
+    {
+      "id": 1,
+      "locality": "FELIPE CARRILO PUERTO",
+      "municipality": "FELIPE CARRILO PUERTO",
+      "building": "ESC. PRIM. “MOISES SAENZ“",
+      "address": "CALLE 66 ENTRE 69 Y AV. LÁZARO CÁRDENAS #783",
+      "latitude": "20.5668582",
+      "longitude": "-88.6397632",
+      "gmaps_link": "https://maps.app.goo.gl/74qUkS9ntDthFe2B7"
+    }
+  ]
+}

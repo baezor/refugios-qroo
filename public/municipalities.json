@@ -1,0 +1,48 @@
+{
+  "municipalities": [
+    {
+      "inegi_code": "001",
+      "full_name": "Cozumel"
+    },
+    {
+      "inegi_code": "002",
+      "full_name": "Felipe Carrillo Puerto"
+    },
+    {
+      "inegi_code": "003",
+      "full_name": "Isla Mujeres"
+    },
+    {
+      "inegi_code": "004",
+      "full_name": "Othón P. Blanco"
+    },
+    {
+      "inegi_code": "005",
+      "full_name": "Benito Juarez"
+    },
+    {
+      "inegi_code": "006",
+      "full_name": "José María Morelos"
+    },
+    {
+      "inegi_code": "007",
+      "full_name": "Lázaro Cárdenas"
+    },
+    {
+      "inegi_code": "008",
+      "full_name": "Solidaridad"
+    },
+    {
+      "inegi_code": "009",
+      "full_name": "Tulum"
+    },
+    {
+      "inegi_code": "010",
+      "full_name": "Bacalar"
+    },
+    {
+      "inegi_code": "011",
+      "full_name": "Puerto Morelos"
+    }
+  ]
+}
