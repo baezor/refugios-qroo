@@ -1,24 +1,662 @@
-{
-  "shelters": [
-    {
-      "id": 0,
-      "locality": "CANCUN",
-      "municipality": "BENITO JUÁREZ",
-      "building": "AÑO DEL CENTENARIO DE Q. ROO",
-      "address": "CALLE 66 ENTRE 69 Y AV. LÁZARO CÁRDENAS #783",
-      "latitude": "20.5668582",
-      "longitude": "-88.6397632",
-      "gmaps_link": "https://maps.app.goo.gl/74qUkS9ntDthFe2B7"
-    },
-    {
-      "id": 1,
-      "locality": "FELIPE CARRILO PUERTO",
-      "municipality": "FELIPE CARRILO PUERTO",
-      "building": "ESC. PRIM. “MOISES SAENZ“",
-      "address": "CALLE 66 ENTRE 69 Y AV. LÁZARO CÁRDENAS #783",
-      "latitude": "20.5668582",
-      "longitude": "-88.6397632",
-      "gmaps_link": "https://maps.app.goo.gl/74qUkS9ntDthFe2B7"
-    }
-  ]
-}
+[
+  {
+    "MUNICIPIO": "BACALAR",
+    "LOCALIDAD": "BACALAR",
+    "EDIFICIO": "Esc. Prim. Urbana Federal \"Miguel Hidalgo\"",
+    "DOMICILIO": "Calle 22 entre Av. 5 y 7"
+  },
+  {
+    "MUNICIPIO": "BACALAR",
+    "LOCALIDAD": "BACALAR",
+    "EDIFICIO": "Esc. Sec. Tec. #34",
+    "DOMICILIO": "Calle 19 A S/N Col. Luis Donaldo Colosio"
+  },
+  {
+    "MUNICIPIO": "BACALAR",
+    "LOCALIDAD": "BACALAR",
+    "EDIFICIO": "Esc. Prim. Urbana Federal \"Miguel Hidalgo\"",
+    "DOMICILIO": "Calle 22 entre Av. 5 y 7"
+  },
+  {
+    "MUNICIPIO": "BACALAR",
+    "LOCALIDAD": "BACALAR",
+    "EDIFICIO": "Esc. Sec. Tec. #34",
+    "DOMICILIO": "Calle 19 A S/N Col. Luis Donaldo Colosio"
+  },
+  {
+    "MUNICIPIO": "BACALAR",
+    "LOCALIDAD": "BACALAR",
+    "EDIFICIO": "Esc. Prim. Rafael Ramírez Castañeda",
+    "DOMICILIO": "Av. 5 entre Calle 8 y 10"
+  },
+  {
+    "MUNICIPIO": "BACALAR",
+    "LOCALIDAD": "BACALAR",
+    "EDIFICIO": "Casa Ejidal",
+    "DOMICILIO": "Av. 7 entre Calle 22 y 24"
+  },
+  {
+    "MUNICIPIO": "BACALAR",
+    "LOCALIDAD": "BACALAR",
+    "EDIFICIO": "Sindicato de Taxistas",
+    "DOMICILIO": "Av. 5 entre Calle 8 y 10"
+  },
+  {
+    "MUNICIPIO": "BACALAR",
+    "LOCALIDAD": "BACALAR",
+    "EDIFICIO": "Preescolar Laguna de Bacalar",
+    "DOMICILIO": "Calle 12 entre Av. 9 y 11"
+  },
+  {
+    "MUNICIPIO": "BACALAR",
+    "LOCALIDAD": "BACALAR",
+    "EDIFICIO": "Casa del Adulto Mayor",
+    "DOMICILIO": "Av. 9 entre Calle 18 y 20"
+  },
+  {
+    "MUNICIPIO": "BACALAR",
+    "LOCALIDAD": "BACALAR",
+    "EDIFICIO": "Esc. Sec. Tec. #34",
+    "DOMICILIO": "Calle 19 A S/N Col. Luis Donaldo Colosio"
+  },
+  {
+    "MUNICIPIO": "BACALAR",
+    "LOCALIDAD": "BACALAR",
+    "EDIFICIO": "Esc. Prim. Rafael Ramírez Castañeda",
+    "DOMICILIO": "Av. 5 entre Calle 8 y 10"
+  },
+  {
+    "MUNICIPIO": "BACALAR",
+    "LOCALIDAD": "BACALAR",
+    "EDIFICIO": "Casa Ejidal",
+    "DOMICILIO": "Av. 7 entre Calle 22 y 24"
+  },
+  {
+    "MUNICIPIO": "BACALAR",
+    "LOCALIDAD": "BACALAR",
+    "EDIFICIO": "Sindicato de Taxistas",
+    "DOMICILIO": "Av. 5 entre Calle 8 y 10"
+  },
+  {
+    "MUNICIPIO": "BACALAR",
+    "LOCALIDAD": "BACALAR",
+    "EDIFICIO": "Preescolar Laguna de Bacalar",
+    "DOMICILIO": "Calle 12 entre Av. 9 y 11"
+  },
+  {
+    "MUNICIPIO": "BACALAR",
+    "LOCALIDAD": "BACALAR",
+    "EDIFICIO": "Esc. Sec. Vicente Guerrero",
+    "DOMICILIO": "Calle 14 entre Av. 7 y 9"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Año del Centenario de Q. Roo",
+    "DOMICILIO": "Calle Sal Si Puedes : Num 102 Reg. 236 Mza. 24 Lote 33"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Chichen Itzá",
+    "DOMICILIO": "Reg. 235 Mza. 35 Lote 01"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Gonzálo Guerrero",
+    "DOMICILIO": "Reg. 232 Mza. 08 Carret. Rancho Viejo"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Ernesto Villanueva Martínez",
+    "DOMICILIO": "Reg. 232 Mza. 35 y 36 Av. Leona Vicario"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Año Internacional del Niño",
+    "DOMICILIO": "SM 68 Mza. 12 Lote 68"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Leona Vicario",
+    "DOMICILIO": "Reg 92 Av. Miguel Hidalgo Ruta 5"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Hermanos Flores Magon",
+    "DOMICILIO": "Reg. 94 Mz. 76 Calle 109 Norte"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Insurgentes",
+    "DOMICILIO": "Reg. 103 Mza. 25 Av. Francisco I. Madero"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Benito Juárez",
+    "DOMICILIO": "Reg. 103 Mza. 104 y 105 Av. Miguel Hidalgo"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "José Vasconcelos",
+    "DOMICILIO": "SM 247 Mza. 80 Lote 1 y 2 Fracc. Azul Bonampak"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Miguel Hidalgo y Costilla",
+    "DOMICILIO": "SM 247 Mza. 13 Lote 3 Villas Otoch 2ª Etapa"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Chetumal",
+    "DOMICILIO": "Reg. 225 Mza. 26 Lote 1 y 2"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "José Pablo Moncayo",
+    "DOMICILIO": "Reg. 249 Fracc. Vilas del Mar Plus"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "M. de Lourdes García Medina",
+    "DOMICILIO": "Reg. 248 Fracc. Villas del Mar 2"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Juan de la Barrera",
+    "DOMICILIO": "Reg. 223 Mza. 8 Av. Gonzálo Guerrero"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Mariano Matamoros",
+    "DOMICILIO": "Reg. 213 Mza. 32 Fracc. Alejandría"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Ek Balam",
+    "DOMICILIO": "SM 247 Mza. 33 Villas Otoch 3era Etapa"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Amado Nervo",
+    "DOMICILIO": "SM 259 Mza. 40 Las Palmas"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Cozumel",
+    "DOMICILIO": "Reg. 201 Mza. 64 Lote 1"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Xochitl Angelica Palomino",
+    "DOMICILIO": "Cuna Maya SM 203 Lote 6 y 7"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Sentimientos de la Nación",
+    "DOMICILIO": "SM 259 Villas Otoch Paraiso Calle Margaritas"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Pablo Latapi",
+    "DOMICILIO": "SM 259 Villas Otoch Paraiso Calle Bugambilias"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Niños Heroes de Chapultepec",
+    "DOMICILIO": "SM 105 Tierra Maya"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Carlos Fuentes Macias",
+    "DOMICILIO": "SM 251 Mza. 100 Lote 1 Av. Obsidiana"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "9 de Enero de 1975",
+    "DOMICILIO": "SM 260 Mza. 50 Lote 2 Ciudad Natura"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Laguna de Bacalar",
+    "DOMICILIO": "Calle Rubi entre Av Pedregal y Margaritas, Col. El Pedregal"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Cuna del Mestizaje",
+    "DOMICILIO": "Col. El Milagro sobre Av. Paraguay"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Carlos Monsivais",
+    "DOMICILIO": "Domicilio conocido, CP 77500, Col. El Milagro"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Río Hondo",
+    "DOMICILIO": "Col. Santa Cecilia Mz10 Av. Libertad Km 3.5"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Mi Patria es Primero",
+    "DOMICILIO": "Col. Avante Agropecuario S/N"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Independencia",
+    "DOMICILIO": "Col. Avante Agropecuario S/N"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Lauro Aguirre Espinoza",
+    "DOMICILIO": "Col. Tres Reyes 3ra Etapa"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Rosario Sansores Sabido",
+    "DOMICILIO": "Av. 6 de Enero S/N, Col. Tres Reyes, CP 77539"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Otilio Montaño",
+    "DOMICILIO": "Calle Efrain Pineda S/N Col. Tres Reyes"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Tenochtitlan",
+    "DOMICILIO": "Col. Mexico. Calle Durango S/N"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Jose Mariano Abasolo",
+    "DOMICILIO": "Col. El Porvenir"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Jaime Sabines",
+    "DOMICILIO": "Reg. 253 Mza. 4 Lote 1 Galaxias del Sol"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Zazil-Ha",
+    "DOMICILIO": "Col. Irregular El Pedregal S/N. Benito Juárez, Q. Roo."
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Jaime Sabines Gutierrez",
+    "DOMICILIO": "Localidad El Porvenir, Calle Esperanza, CP 77573"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Margarita Maza de Juárez",
+    "DOMICILIO": "Calle Unión, CP 77520, Col. Avante"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "CANCÚN",
+    "EDIFICIO": "Antonio Mediz Bolio",
+    "DOMICILIO": "Col. Valle Verde, CP. 77536"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "ALFREDO V. BONFIL",
+    "EDIFICIO": "Bachilleres 3",
+    "DOMICILIO": "Av. Luis Echeverría con Salinas de Gortari"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "ALFREDO V. BONFIL",
+    "EDIFICIO": "Es. Sec. No 17 Rosario Castellanos",
+    "DOMICILIO": "Calle Lázaro Cárdenas por C.N.C."
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "ALFREDO V. BONFIL",
+    "EDIFICIO": "Esc. Prim. Octavio Paz",
+    "DOMICILIO": "Calle Javier Rojo Gómez S/N"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "ALFREDO V. BONFIL",
+    "EDIFICIO": "J. de N. Alfredo V. Bonfil",
+    "DOMICILIO": "Calle Javier Rojo Gómez con Lorenzo Barrera"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "ALFREDO V. BONFIL",
+    "EDIFICIO": "Asociación Gilberto Cancún, A.C.",
+    "DOMICILIO": "Av. Luis Echeverría con Blvd. C.N.C."
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "ALFREDO V. BONFIL",
+    "EDIFICIO": "Casa Ejidal",
+    "DOMICILIO": "Javier Rojo Gomez entre Plutarco Elias Calles"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "ALFREDO V. BONFIL",
+    "EDIFICIO": "Esc. Prim. Emiliano Zapata",
+    "DOMICILIO": "Blvd. Alfredo V. Bonfil entre Leona Vicario"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "ALFREDO V. BONFIL",
+    "EDIFICIO": "Jardín de Niños Pipila",
+    "DOMICILIO": "Blvd. Alfredo V. Bonfil con Luis Echeverria Álvarez"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "ALFREDO V. BONFIL",
+    "EDIFICIO": "Esc. Telesecundaria Ramon Santa Ana Moguel",
+    "DOMICILIO": "Av. Luis Echeverria con Calle CNC"
+  },
+  {
+    "MUNICIPIO": "BENITO JUÁREZ",
+    "LOCALIDAD": "ALFREDO V. BONFIL",
+    "EDIFICIO": "Iglesia Nuestra Sra de Guadalupe",
+    "DOMICILIO": "Blvd. Alfredo V. Bonfil entre Javier Rojo Gomez"
+  },
+  {
+    "MUNICIPIO": "COZUMEL",
+    "LOCALIDAD": "COZUMEL",
+    "EDIFICIO": "Colegio de Bachilleres",
+    "DOMICILIO": "50 Av. entre 27 y 29 Sur Colonia San Miguel 2"
+  },
+  {
+    "MUNICIPIO": "COZUMEL",
+    "LOCALIDAD": "COZUMEL",
+    "EDIFICIO": "Esc. Sec. Carlos Monsivais",
+    "DOMICILIO": "Calle Marlín entre Calles Coral y Delfín Fracc. Altamar II"
+  },
+  {
+    "MUNICIPIO": "COZUMEL",
+    "LOCALIDAD": "COZUMEL",
+    "EDIFICIO": "CONALEP",
+    "DOMICILIO": "Av. Pedro Joaquin esquina con 23 Sur Col. San Miguel 1"
+  },
+  {
+    "MUNICIPIO": "FELIPE CARRILLO PUERTO",
+    "LOCALIDAD": "FELIPE CARRILLO PUERTO",
+    "EDIFICIO": "Esc. Prim. 'Moisés Saenz'",
+    "DOMICILIO": "Calle 66 entre 69 y Av. Lázaro Cárdenas #783"
+  },
+  {
+    "MUNICIPIO": "FELIPE CARRILLO PUERTO",
+    "LOCALIDAD": "FELIPE CARRILLO PUERTO",
+    "EDIFICIO": "Esc. Prim. 'Tiburcio May Uh'",
+    "DOMICILIO": "Av. Sgo. Pacheco Cruz #801 por Av. Benito Juárez, Col. Juan Bautista Vega"
+  },
+  {
+    "MUNICIPIO": "FELIPE CARRILLO PUERTO",
+    "LOCALIDAD": "FELIPE CARRILLO PUERTO",
+    "EDIFICIO": "Esc. Sec. 'Leona Vicario'",
+    "DOMICILIO": "Av. Lázaro Cárdenas #117 por Calle 56 y 60 Col. Cecilio Chi"
+  },
+  {
+    "MUNICIPIO": "FELIPE CARRILLO PUERTO",
+    "LOCALIDAD": "FELIPE CARRILLO PUERTO",
+    "EDIFICIO": "Esc. Sec. Tec 'Jose Ma. Luis Mora'",
+    "DOMICILIO": "Calle 80 S/N entre Calle 61 y 67 Col. Fco. May"
+  },
+  {
+    "MUNICIPIO": "FELIPE CARRILLO PUERTO",
+    "LOCALIDAD": "FELIPE CARRILLO PUERTO",
+    "EDIFICIO": "UPN",
+    "DOMICILIO": "Constituyentes entre 77 y 79, Col. Martínez Ross"
+  },
+  {
+    "MUNICIPIO": "FELIPE CARRILLO PUERTO",
+    "LOCALIDAD": "FELIPE CARRILLO PUERTO",
+    "EDIFICIO": "Esc. Prim. 'Don Felipe Carrillo Puerto'",
+    "DOMICILIO": "Calle 60 por Calle 77 y 79, Col. Leona Vicario"
+  },
+  {
+    "MUNICIPIO": "FELIPE CARRILLO PUERTO",
+    "LOCALIDAD": "FELIPE CARRILLO PUERTO",
+    "EDIFICIO": "Escuela de Educación Especial C.A.M.",
+    "DOMICILIO": "Calle 55 entre 50 A y 52, Col. Javier Rojo Gómez"
+  },
+  {
+    "MUNICIPIO": "ISLA MUJERES",
+    "LOCALIDAD": "ISLA MUJERES",
+    "EDIFICIO": "Sindicato Unico para los Trabajadores al Servicio del Ayuntamiento de Isla Mujeres",
+    "DOMICILIO": "Calle Cherna Col. La Gloria, Isla Mujeres, Quintana Roo C.P. 77402"
+  },
+  {
+    "MUNICIPIO": "ISLA MUJERES",
+    "LOCALIDAD": "ISLA MUJERES",
+    "EDIFICIO": "Escuela Primaria Julio Sauri Espinosa",
+    "DOMICILIO": "Calle: Sierra, SM: 006, MZ: 190, Lote: 011, Colonia: La Gloria, CP. 77400"
+  },
+  {
+    "MUNICIPIO": "ISLA MUJERES",
+    "LOCALIDAD": "ISLA MUJERES",
+    "EDIFICIO": "Escuela Secundaria Tecnica No. 1, Benito Juarez",
+    "DOMICILIO": "Calle: Educacion Tecnica, MZ: 078, Lote: 001, Colonia: Electricistas, CP. 77400"
+  },
+  {
+    "MUNICIPIO": "ISLA MUJERES",
+    "LOCALIDAD": "ZONA CONTINENTAL",
+    "EDIFICIO": "Centro Comunitario, Zona Continental",
+    "DOMICILIO": "Calle: 2 entre Calle: 40 Sur y Calle: 38 Sur, El Centro Comunitario, Rancho Viejo, Centro Urbano"
+  },
+  {
+    "MUNICIPIO": "ISLA MUJERES",
+    "LOCALIDAD": "ZONA AGRÍCOLA",
+    "EDIFICIO": "Escuela Rural 'San Antonio'",
+    "DOMICILIO": "Zona Agricola, KM 20"
+  },
+  {
+    "MUNICIPIO": "ISLA MUJERES",
+    "LOCALIDAD": "FRANCISCO MAY",
+    "EDIFICIO": "Escuela Prescolar Comunitario Francisco May",
+    "DOMICILIO": "Francisco May"
+  },
+  {
+    "MUNICIPIO": "JOSÉ MARÍA MORELOS",
+    "LOCALIDAD": "JOSÉ MARÍA MORELOS",
+    "EDIFICIO": "Esc. Sec. Andrés Quintana Roo",
+    "DOMICILIO": "Calle Benito Juárez Esq. 5 de Mayo"
+  },
+  {
+    "MUNICIPIO": "JOSÉ MARÍA MORELOS",
+    "LOCALIDAD": "JOSÉ MARÍA MORELOS",
+    "EDIFICIO": "Colegio de Bachilleres",
+    "DOMICILIO": "Calle Miguel Hidalgo, Col. Guadalupe"
+  },
+  {
+    "MUNICIPIO": "JOSÉ MARÍA MORELOS",
+    "LOCALIDAD": "JOSÉ MARÍA MORELOS",
+    "EDIFICIO": "Esc. Primaria Vicente Guerrero",
+    "DOMICILIO": "Calle Vicente Guerrero"
+  },
+  {
+    "MUNICIPIO": "JOSÉ MARÍA MORELOS",
+    "LOCALIDAD": "JOSÉ MARÍA MORELOS",
+    "EDIFICIO": "Esc. Primaria Agustin Melgar",
+    "DOMICILIO": "Calle Benito Juárez Esq. 5 de Mayo y Cecilio Chi"
+  },
+  {
+    "MUNICIPIO": "JOSÉ MARÍA MORELOS",
+    "LOCALIDAD": "JOSÉ MARÍA MORELOS",
+    "EDIFICIO": "Esc. Primaria Benito Juárez",
+    "DOMICILIO": "Calle Benito Juárez Esquina Santiago Pacheco"
+  },
+  {
+    "MUNICIPIO": "JOSÉ MARÍA MORELOS",
+    "LOCALIDAD": "JOSÉ MARÍA MORELOS",
+    "EDIFICIO": "Esc. Primaria Carlos Lugo Lopez",
+    "DOMICILIO": "Calle Vicente Guerrero y Kohunlich"
+  },
+  {
+    "MUNICIPIO": "OTHÓN P. BLANCO",
+    "LOCALIDAD": "CHETUMAL",
+    "EDIFICIO": "C.B.T.A 11",
+    "DOMICILIO": "Av. Insurgentes S/N"
+  },
+  {
+    "MUNICIPIO": "OTHÓN P. BLANCO",
+    "LOCALIDAD": "CHETUMAL",
+    "EDIFICIO": "Esc. Primaria Guadalupe Victoria",
+    "DOMICILIO": "Calle Noh Bec entre Laguna San Felipe y Xul-Ha Col. Lagunitas"
+  },
+  {
+    "MUNICIPIO": "OTHÓN P. BLANCO",
+    "LOCALIDAD": "CHETUMAL",
+    "EDIFICIO": "Escuela Francisco I. Madero",
+    "DOMICILIO": "C. Emiliano Zapata entre Carranza y Primo de Verdad"
+  },
+  {
+    "MUNICIPIO": "OTHÓN P. BLANCO",
+    "LOCALIDAD": "CHETUMAL",
+    "EDIFICIO": "Escuela Primaria Francisco Primo de Verdad",
+    "DOMICILIO": "Calle 3 S/N Esquina Chetumal, Col. Lázaro Cárdenas"
+  },
+  {
+    "MUNICIPIO": "OTHÓN P. BLANCO",
+    "LOCALIDAD": "CHETUMAL",
+    "EDIFICIO": "CBTIS 253",
+    "DOMICILIO": "Calle Sacxan entre Raudales y Tres Garantías, Col. Solidaridad"
+  },
+  {
+    "MUNICIPIO": "OTHÓN P. BLANCO",
+    "LOCALIDAD": "CHETUMAL",
+    "EDIFICIO": "CBTIS No. 214",
+    "DOMICILIO": "Av. Heriberto Frias No. 562 Esquina con Cedro, Col. Del Bosque"
+  },
+  {
+    "MUNICIPIO": "OTHÓN P. BLANCO",
+    "LOCALIDAD": "CHETUMAL",
+    "EDIFICIO": "Eva Samano de Lopez Mateos",
+    "DOMICILIO": "Calle Celul entre Chicozapote y 10 de Abril"
+  },
+  {
+    "MUNICIPIO": "OTHÓN P. BLANCO",
+    "LOCALIDAD": "CHETUMAL",
+    "EDIFICIO": "Escuela Secundaria Armando Escobar Nava No. 13",
+    "DOMICILIO": "Calle Dos Aguadas entre Alfredo V. Bonfil y Chetumal"
+  },
+  {
+    "MUNICIPIO": "PUERTO MORELOS",
+    "LOCALIDAD": "PUERTO MORELOS",
+    "EDIFICIO": "Colegio Bachilleres Pto Morelos",
+    "DOMICILIO": "Reg. 17 Mza. 36 Lt. 1 y 2, Calle Caoba"
+  },
+  {
+    "MUNICIPIO": "PUERTO MORELOS",
+    "LOCALIDAD": "PUERTO MORELOS",
+    "EDIFICIO": "Telesecundaria 'Ramon Bravo Prieto'",
+    "DOMICILIO": "Calle Caoba entre Calle 52 y 56"
+  },
+  {
+    "MUNICIPIO": "PUERTO MORELOS",
+    "LOCALIDAD": "LEONA VICARIO",
+    "EDIFICIO": "Templo Iglesia de Dios de la Profecía",
+    "DOMICILIO": "Calle Cenote a unos cuantos pasos del Centro de Salud"
+  },
+  {
+    "MUNICIPIO": "PUERTO MORELOS",
+    "LOCALIDAD": "LEONA VICARIO",
+    "EDIFICIO": "Yucatán Península Misión",
+    "DOMICILIO": "Colonia La Granja"
+  },
+  {
+    "MUNICIPIO": "PUERTO MORELOS",
+    "LOCALIDAD": "CENTRAL VALLARTA",
+    "EDIFICIO": "Esc. Prim. Lázaro Cárdenas",
+    "DOMICILIO": "Central Vallarta Ruta de los Cenotes entre Calles Anona y Limonaria"
+  },
+  {
+    "MUNICIPIO": "TULUM",
+    "LOCALIDAD": "TULUM",
+    "EDIFICIO": "Escuela Primaria 'Julio Ruelas' TM / TV",
+    "DOMICILIO": "Calle Mercurio"
+  },
+  {
+    "MUNICIPIO": "TULUM",
+    "LOCALIDAD": "TULUM",
+    "EDIFICIO": "Escuela Primaria 'Ford 198' T.M Y T.V.",
+    "DOMICILIO": "Calle Mercurio"
+  },
+  {
+    "MUNICIPIO": "TULUM",
+    "LOCALIDAD": "TULUM",
+    "EDIFICIO": "Escuela Primaria 'Octaviano Solis Aguirre' T.M Y T.V.",
+    "DOMICILIO": "Calle Osiris"
+  },
+  {
+    "MUNICIPIO": "TULUM",
+    "LOCALIDAD": "TULUM",
+    "EDIFICIO": "Escuela Primaria 'Gregorio Pérez Cahuich' TM / TV",
+    "DOMICILIO": "Calle Bojon"
+  },
+  {
+    "MUNICIPIO": "TULUM",
+    "LOCALIDAD": "TULUM",
+    "EDIFICIO": "Centro de Estudios Cientificos y Tecnológicos",
+    "DOMICILIO": "Calle Alfa Nte. / Calle 4 Ote. Y Jupiter, Col. Maya Pax"
+  },
+  {
+    "MUNICIPIO": "TULUM",
+    "LOCALIDAD": "TULUM",
+    "EDIFICIO": "Escuela Secundaria Federal 'Zamna #15'",
+    "DOMICILIO": "Calle 4 Oriente entre Calle Osiris y Beta Nte, Colonia Maya Pax"
+  },
+  {
+    "MUNICIPIO": "TULUM",
+    "LOCALIDAD": "TULUM",
+    "EDIFICIO": "Escuela Primaria 'Tulum'",
+    "DOMICILIO": "Calle Sax Kin entre Calle Chacmol y Calle Cha A, Colonia Xul Ka"
+  },
+  {
+    "MUNICIPIO": "TULUM",
+    "LOCALIDAD": "TULUM",
+    "EDIFICIO": "Escuela Telesecundaria 'Erick Paolo Martínez'",
+    "DOMICILIO": "Calle Júpiter Sur entre Av. Tulum y Calle Sol Pte, Colonia Cancha Maya"
+  },
+  {
+    "MUNICIPIO": "TULUM",
+    "LOCALIDAD": "TULUM",
+    "EDIFICIO": "Colegio Ingles Plantel Tulum",
+    "DOMICILIO": "Calle Escorpión con Andrómeda, Entrada Fraccionamiento"
+  }
+]

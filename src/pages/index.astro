@@ -1,5 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import shelters from "../../public/shelters.json";
+
+const totalShelters = shelters.length;
 ---
 
 <Layout title="Listado de albergues y refugios de Quintana Roo">
@@ -11,6 +14,11 @@ import Layout from "../layouts/Layout.astro";
           href="https://github.com/baezor/refugios-qroo"
           >el archivo README en el repositorio en GitHub</a
         > para más información.
+      </p>
+      <p>
+        Actualmente se cuenta con la información de un total de
+        <strong>{totalShelters} refugios</strong>
+        de primera apertura en todo el estado de Quintana Roo
       </p>
     </div>
   </main>
