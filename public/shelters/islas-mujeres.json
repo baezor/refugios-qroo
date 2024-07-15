@@ -1,0 +1,38 @@
+[
+  {
+    "MUNICIPIO": "ISLA MUJERES",
+    "LOCALIDAD": "ISLA MUJERES",
+    "EDIFICIO": "Sindicato Unico para los Trabajadores al Servicio del Ayuntamiento de Isla Mujeres",
+    "DOMICILIO": "Calle Cherna Col. La Gloria, Isla Mujeres, Quintana Roo C.P. 77402"
+  },
+  {
+    "MUNICIPIO": "ISLA MUJERES",
+    "LOCALIDAD": "ISLA MUJERES",
+    "EDIFICIO": "Escuela Primaria Julio Sauri Espinosa",
+    "DOMICILIO": "Calle: Sierra, SM: 006, MZ: 190, Lote: 011, Colonia: La Gloria, CP. 77400"
+  },
+  {
+    "MUNICIPIO": "ISLA MUJERES",
+    "LOCALIDAD": "ISLA MUJERES",
+    "EDIFICIO": "Escuela Secundaria Tecnica No. 1, Benito Juarez",
+    "DOMICILIO": "Calle: Educacion Tecnica, MZ: 078, Lote: 001, Colonia: Electricistas, CP. 77400"
+  },
+  {
+    "MUNICIPIO": "ISLA MUJERES",
+    "LOCALIDAD": "ZONA CONTINENTAL",
+    "EDIFICIO": "Centro Comunitario, Zona Continental",
+    "DOMICILIO": "Calle: 2 entre Calle: 40 Sur y Calle: 38 Sur, El Centro Comunitario, Rancho Viejo, Centro Urbano"
+  },
+  {
+    "MUNICIPIO": "ISLA MUJERES",
+    "LOCALIDAD": "ZONA AGRÍCOLA",
+    "EDIFICIO": "Escuela Rural 'San Antonio'",
+    "DOMICILIO": "Zona Agricola, KM 20"
+  },
+  {
+    "MUNICIPIO": "ISLA MUJERES",
+    "LOCALIDAD": "FRANCISCO MAY",
+    "EDIFICIO": "Escuela Prescolar Comunitario Francisco May",
+    "DOMICILIO": "Francisco May"
+  }
+]
