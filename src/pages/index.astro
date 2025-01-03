@@ -57,6 +57,18 @@ const sortedShelters = [...shelters].sort((a, b) => a.EDIFICIO.localeCompare(b.E
   const sheltersGrid = document.getElementById('shelters-grid');
   const shelterCards = document.querySelectorAll('.shelter-card');
 
+  // Add click handler to shelter cards
+  shelterCards.forEach((card: HTMLElement) => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => {
+      const name = card.querySelector('h2')?.textContent || '';
+      const municipality = card.dataset.municipality || '';
+      const searchQuery = encodeURIComponent(`${name}, ${municipality}, Quintana Roo, Mexico`);
+      const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${searchQuery}`;
+      window.open(mapsUrl, '_blank');
+    });
+  });
+
   municipalityFilter.addEventListener('change', (e) => {
     const selectedMunicipality = (e.target as HTMLSelectElement).value;
     
@@ -136,26 +148,27 @@ const sortedShelters = [...shelters].sort((a, b) => a.EDIFICIO.localeCompare(b.E
     border-radius: 8px;
     padding: 1.5rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease-in-out;
+  }
 
-    &:hover {
-      transform: translateY(-2px);
-    }
+  .shelter-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
 
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      color: rgb(var(--accent));
-    }
+  .shelter-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: rgb(var(--accent));
+  }
 
-    p {
-      font-size: 1rem;
-      text-align: left;
-      margin-bottom: 0.5rem;
+  .shelter-card p {
+    font-size: 1rem;
+    text-align: left;
+    margin-bottom: 0.5rem;
 
-      &:last-child {
-        margin-bottom: 0;
-      }
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 </style>
