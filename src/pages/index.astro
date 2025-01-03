@@ -52,34 +52,41 @@ const sortedShelters = [...shelters].sort((a, b) => a.EDIFICIO.localeCompare(b.E
   </main>
 </Layout>
 
-<script>
-  const municipalityFilter = document.getElementById('municipality-filter');
-  const sheltersGrid = document.getElementById('shelters-grid');
-  const shelterCards = document.querySelectorAll('.shelter-card');
+<script is:inline>
+  function initializeShelterCards() {
+    const municipalityFilter = document.getElementById('municipality-filter');
+    const sheltersGrid = document.getElementById('shelters-grid');
+    const shelterCards = document.querySelectorAll('.shelter-card');
 
-  // Add click handler to shelter cards
-  shelterCards.forEach((card: HTMLElement) => {
-    card.style.cursor = 'pointer';
-    card.addEventListener('click', () => {
-      const name = card.querySelector('h2')?.textContent || '';
-      const municipality = card.dataset.municipality || '';
-      const searchQuery = encodeURIComponent(`${name}, ${municipality}, Quintana Roo, Mexico`);
-      const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${searchQuery}`;
-      window.open(mapsUrl, '_blank');
+    // Add click handler to shelter cards
+    shelterCards.forEach((card) => {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', () => {
+        const name = card.querySelector('h2')?.textContent || '';
+        const municipality = card.dataset.municipality || '';
+        const searchQuery = encodeURIComponent(`${name}, ${municipality}, Quintana Roo, Mexico`);
+        const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${searchQuery}`;
+        window.open(mapsUrl, '_blank');
+      });
     });
-  });
 
-  municipalityFilter.addEventListener('change', (e) => {
-    const selectedMunicipality = (e.target as HTMLSelectElement).value;
-    
-    shelterCards.forEach((card: HTMLElement) => {
-      if (!selectedMunicipality || card.dataset.municipality === selectedMunicipality) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
-      }
+    municipalityFilter.addEventListener('change', (e) => {
+      const selectedMunicipality = e.target.value;
+      
+      shelterCards.forEach((card) => {
+        if (!selectedMunicipality || card.dataset.municipality === selectedMunicipality) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
     });
-  });
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', initializeShelterCards);
+  // Initialize on Astro page changes
+  document.addEventListener('astro:page-load', initializeShelterCards);
 </script>
 
 <style>
