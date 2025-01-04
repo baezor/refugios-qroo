@@ -1,0 +1,135 @@
+---
+import Layout from "../layouts/Layout.astro";
+import shelters from "../../public/shelters.json";
+import { slugify } from "../utils/slugify";
+
+export async function getStaticPaths() {
+  const municipalities = [...new Set(shelters.map(shelter => shelter.MUNICIPIO))].sort();
+  
+  return municipalities.map(municipality => ({
+    params: { municipality: slugify(municipality) },
+    props: { 
+      municipality,
+      shelters: shelters.filter(shelter => shelter.MUNICIPIO === municipality)
+        .sort((a, b) => a.EDIFICIO.localeCompare(b.EDIFICIO))
+    }
+  }));
+}
+
+const { municipality, shelters: municipalityShelters } = Astro.props;
+const totalShelters = municipalityShelters.length;
+---
+
+<Layout title={`Refugios en ${municipality} - Quintana Roo`}>
+  <main>
+    <div class="container">
+      <h1>Refugios en {municipality}</h1>
+      <p>
+        <a href="/" class="back-link">← Regresar al listado completo</a>
+      </p>
+      <p>
+        Se cuenta con la información de <strong>{totalShelters} refugios</strong> de
+        primera apertura en {municipality}.
+      </p>
+
+      <div class="shelters-grid" id="shelters-grid">
+        {
+          municipalityShelters.map((shelter) => (
+            <div class="shelter-card" data-municipality={shelter.MUNICIPIO}>
+              <h2>{shelter.EDIFICIO}</h2>
+              <p class="locality">
+                <strong>Localidad:</strong> {shelter.LOCALIDAD}
+              </p>
+              <p class="address">
+                <strong>Domicilio:</strong> {shelter.DOMICILIO}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script is:inline>
+  function initializeShelterCards() {
+    const shelterCards = document.querySelectorAll('.shelter-card');
+
+    shelterCards.forEach((card) => {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', () => {
+        const name = card.querySelector('h2')?.textContent || '';
+        const municipality = card.dataset.municipality || '';
+        const searchQuery = encodeURIComponent(`${name}, ${municipality}, Quintana Roo, Mexico`);
+        const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${searchQuery}`;
+        window.open(mapsUrl, '_blank');
+      });
+    });
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', initializeShelterCards);
+  // Initialize on Astro page changes
+  document.addEventListener('astro:page-load', initializeShelterCards);
+</script>
+
+<style>
+  main {
+    width: 100%;
+    min-height: 100dvh;
+    padding: 48px 28px;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: rgb(var(--accent));
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .shelters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem 0;
+  }
+
+  .shelter-card {
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .shelter-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .shelter-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: rgb(var(--accent));
+  }
+
+  .shelter-card p {
+    font-size: 1rem;
+    text-align: left;
+    margin-bottom: 0.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+</style>
