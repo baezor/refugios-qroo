@@ -6,9 +6,42 @@ import { slugify } from "../utils/slugify";
 const totalShelters = shelters.length;
 const municipalities = [...new Set(shelters.map(shelter => shelter.MUNICIPIO))].sort();
 const sortedShelters = [...shelters].sort((a, b) => a.EDIFICIO.localeCompare(b.EDIFICIO));
+
+// Create structured data for the page
+const pageTitle = "Listado de albergues y refugios de Quintana Roo";
+const pageDescription = `Directorio completo de ${totalShelters} albergues y refugios en Quintana Roo, México. Información actualizada para situaciones de emergencia con ubicaciones y detalles de contacto.`;
+
+// Create JSON-LD structured data
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": pageTitle,
+  "description": pageDescription,
+  "numberOfItems": totalShelters,
+  "itemListElement": sortedShelters.slice(0, 10).map((shelter, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "item": {
+      "@type": "CivicStructure",
+      "name": shelter.EDIFICIO,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": shelter.LOCALIDAD,
+        "addressRegion": "Quintana Roo",
+        "addressCountry": "MX",
+        "streetAddress": shelter.DOMICILIO
+      }
+    }
+  }))
+};
 ---
 
-<Layout title="Listado de albergues y refugios de Quintana Roo">
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  type="website"
+  structuredData={structuredData}
+>
   <main>
     <div class="container">
       <h1>Listado de albergues y refugios de Quintana Roo</h1>
@@ -64,35 +97,57 @@ const sortedShelters = [...shelters].sort((a, b) => a.EDIFICIO.localeCompare(b.E
   </main>
 </Layout>
 
-<script is:inline>
+<script is:inline define:vars={{ shelters: sortedShelters }}>
+  // Make shelters data available globally
+  window.sheltersData = shelters;
+  
   function initializeShelterCards() {
     const municipalityFilter = document.getElementById('municipality-filter');
     const sheltersGrid = document.getElementById('shelters-grid');
+    
+    // Check if we're on the right page before proceeding
+    if (!sheltersGrid) {
+      return; // Exit if we're not on the refugios page
+    }
+    
     const shelterCards = document.querySelectorAll('.shelter-card');
 
     // Add click handler to shelter cards
-    shelterCards.forEach((card) => {
+    shelterCards.forEach((card, index) => {
       card.style.cursor = 'pointer';
       card.addEventListener('click', () => {
-        const name = card.querySelector('h2')?.textContent || '';
-        const municipality = card.dataset.municipality || '';
-        const searchQuery = encodeURIComponent(`${name}, ${municipality}, Quintana Roo, Mexico`);
-        const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${searchQuery}`;
+        const shelter = window.sheltersData[index];
+        let mapsUrl;
+        
+        // If we have coordinates, use them directly
+        if (shelter.coordinates && shelter.coordinates.lat && shelter.coordinates.lng) {
+          mapsUrl = `https://www.google.com/maps/search/?api=1&query=${shelter.coordinates.lat},${shelter.coordinates.lng}`;
+        } else {
+          // Fall back to search query
+          const name = card.querySelector('h2')?.textContent || '';
+          const municipality = card.dataset.municipality || '';
+          const searchQuery = encodeURIComponent(`${name}, ${municipality}, Quintana Roo, Mexico`);
+          mapsUrl = `https://www.google.com/maps/search/?api=1&query=${searchQuery}`;
+        }
+        
         window.open(mapsUrl, '_blank');
       });
     });
 
-    municipalityFilter.addEventListener('change', (e) => {
-      const selectedMunicipality = e.target.value;
-      
-      shelterCards.forEach((card) => {
-        if (!selectedMunicipality || card.dataset.municipality === selectedMunicipality) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
+    // Only add event listener if the element exists
+    if (municipalityFilter) {
+      municipalityFilter.addEventListener('change', (e) => {
+        const selectedMunicipality = e.target.value;
+        
+        shelterCards.forEach((card) => {
+          if (!selectedMunicipality || card.dataset.municipality === selectedMunicipality) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
       });
-    });
+    }
   }
 
   // Initialize on page load

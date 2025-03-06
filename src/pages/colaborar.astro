@@ -8,27 +8,74 @@ import Layout from "../layouts/Layout.astro";
       <article class="content">
         <h2>Cómo contribuir</h2>
 
-        <p>Mi objetivo es crear un sitio consultar el listado de albergues y refugios disponibles en Quintana Roo. Ya tenemos el listado de todos los refugios pero para que sea realmente util, es necesario contar con la ubicación de todos ellos. <a href="https://qroo.gob.mx/coeproc/index.php/refugios/" target="_blank">El gobierno del estado brinda la información en archivos PDFs</a>, y unicamente cuenta con el nombre del edificio y la dirección.</p>
+        <p>
+          El objetivo de este sitio es facilitar la consulta del listado de albergues y
+          refugios disponibles en Quintana Roo.
+        </p>
 
-        <p>Si deseas colaborar, puedes ayudarme a recolectar las coordenadas geográficas de los refugios. Para ello, sigue los siguientes pasos:</p>
+        <p>
+          <a
+            href="https://qroo.gob.mx/coeproc/index.php/refugios/"
+            target="_blank"
+            >El gobierno del estado brinda la información en archivos PDF</a
+          >, por lo que hemos recopilado estos datos y los presentamos en un formato más accesible a través de este sitio web. Sin embargo, aún faltan
+          las coordenadas geográficas de algunos refugios.
+        </p>
 
+        <p>
+          Si deseas colaborar, puedes ayudarnos a recolectar las coordenadas
+          geográficas de los refugios faltantes. Para ello, sigue estos
+          pasos:
+        </p>
         <ol>
-          <li>Ingresa al <a href="https://www.google.com/maps">sitio web o app de Google Maps</a>.</li>
-          <li>Busca el refugio en el mapa. Los archivos PDFs contienen la dirección exacta, mismos que puedes encontrar en este <a href="https://github.com/baezor/refugios-qroo/tree/main/public/pdfs">repositorio</a>.</li>
-          <li>Haz clic con el botón derecho en el lugar o en el área del mapa. Se abrirá una ventana emergente. Puedes encontrar tu latitud y longitud en formato decimal en la parte superior.</li>
-          <li>Copia las coordenadas automáticamente, haz clic con el botón izquierdo en la latitud y la longitud.</li>
-          <li>Envíalas a <a href="mailto:a@baezor.io">a@baezor.io</a>. Las coordenadas se ven así: <code>21.041752219016665, -86.87463826918639</code>. Si tienes conocimientos técnicos, envía un pull request con la información recolectada.</li>
+          <li>
+            Ingresa al <a href="https://www.google.com/maps"
+              >sitio web o app de Google Maps</a
+            >.
+          </li>
+          <li>
+            Busca el refugio en el mapa. Los archivos PDF contienen las
+            direcciones exactas, los cuales puedes encontrar en este <a
+              href="https://github.com/baezor/refugios-qroo/tree/main/public/pdfs"
+              >repositorio</a
+            >.
+          </li>
+          <li>
+            Haz clic con el botón derecho en el lugar o en el área del mapa. Se
+            abrirá una ventana emergente. Puedes encontrar tu latitud y longitud
+            en formato decimal en la parte superior.
+          </li>
+          <li>
+            Copia las coordenadas haciendo clic con el botón
+            izquierdo en la latitud y longitud mostradas.
+          </li>
+          <li>
+            Envía las coordenadas a <a href="mailto:a@baezor.io">a@baezor.io</a>. 
+            El formato debe ser similar a este ejemplo: <code
+              >21.041752219016665, -86.87463826918639</code
+            >. Si tienes conocimientos técnicos, también puedes enviar un pull request con la
+            información recolectada directamente al repositorio.
+          </li>
         </ol>
 
         <h2>Contribuir al desarrollo del sitio</h2>
 
-        <p>Este proyecto está construido con <a href="https://astro.build/">Astro</a>, un framework para la creación de sitios web. Si deseas contribuir al código, sigue los siguientes pasos:</p>
+        <p>
+          Este proyecto está desarrollado con <a href="https://astro.build/"
+            >Astro</a
+          >, un framework moderno para la creación de sitios web. Si deseas contribuir
+          al código, sigue estos pasos:
+        </p>
 
         <ol>
           <li>Clona el repositorio.</li>
           <li>Instala las dependencias con <code>npm install</code>.</li>
-          <li>Ejecuta el servidor de desarrollo con <code>npm run dev</code>.</li>
-          <li>Elige algún issue abierto o tarea pendientes que quieras resolver.</li>
+          <li>
+            Ejecuta el servidor de desarrollo con <code>npm run dev</code>.
+          </li>
+          <li>
+            Elige algún issue abierto o tarea pendiente que quieras resolver.
+          </li>
           <li>Realiza los cambios necesarios.</li>
           <li>Envía un pull request con tus cambios.</li>
         </ol>
@@ -43,7 +90,7 @@ import Layout from "../layouts/Layout.astro";
     min-height: 100dvh;
     padding: 28px;
   }
-  
+
   .container {
     max-width: 800px;
     margin: 0 auto;
@@ -53,7 +100,7 @@ import Layout from "../layouts/Layout.astro";
     background: #fff;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   h2 {
@@ -74,7 +121,7 @@ import Layout from "../layouts/Layout.astro";
 
   ol {
     margin: 1rem 0 2rem 1.5rem;
-    
+
     li {
       font-size: 1.1rem;
       line-height: 1.6;
@@ -85,7 +132,7 @@ import Layout from "../layouts/Layout.astro";
   a {
     color: rgb(var(--accent));
     text-decoration: underline;
-    
+
     &:hover {
       text-decoration: none;
     }

@@ -14,6 +14,18 @@ La tarea más ardua en este proyecto es la recolección de las coordenadas geogr
 
 [El gobierno del estado brinda la información en archivos PDFs](https://qroo.gob.mx/coeproc/refugios/), y unicamente cuenta con el nombre del edificio y la dirección. Sin embargo para que la ubicación de los refugios pueda ser mostrada en un mapa, es necesario contar con las coordenadas geográficas de cada uno.
 
+### Opción 1: Obtener coordenadas automáticamente
+
+El proyecto incluye un script que utiliza la API de Google Maps para obtener automáticamente las coordenadas de los refugios:
+
+1. Obtén una clave de API de Google Maps con la API de Geocoding habilitada.
+2. Edita el archivo `getLocations.js` y reemplaza `YOUR_GOOGLE_MAPS_API_KEY` con tu clave de API.
+3. Ejecuta el script con el comando `node getLocations.js`.
+4. Las coordenadas se añadirán automáticamente al archivo `public/shelters.json`.
+5. Una vez que tengas las coordenadas, puedes ver todos los refugios en el mapa visitando la página `/mapa`.
+
+### Opción 2: Contribuir coordenadas manualmente
+
 Puedes ayudar a recolectar las coordenadas geográficas de los refugios. Para ello, sigue los siguientes pasos:
 
 1. Ingresa al [sitio web o app de Google Maps](https://www.google.com/maps).

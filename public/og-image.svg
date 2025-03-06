@@ -1,0 +1,19 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#f6f6f6"/>
+  
+  <!-- Accent color bar -->
+  <rect width="1200" height="20" y="0" fill="#AB0A3D"/>
+  <rect width="1200" height="20" y="610" fill="#AB0A3D"/>
+  
+  <!-- Title -->
+  <text x="600" y="250" font-family="system-ui, sans-serif" font-size="64" font-weight="bold" text-anchor="middle" fill="#AB0A3D">Refugios Quintana Roo</text>
+  
+  <!-- Subtitle -->
+  <text x="600" y="340" font-family="system-ui, sans-serif" font-size="36" text-anchor="middle" fill="#333">Información actualizada sobre albergues y refugios</text>
+  
+  <!-- Map Icon -->
+  <g transform="translate(520, 400) scale(5)">
+    <path d="M16 0C7.16 0 0 7.16 0 16C0 24.84 7.16 32 16 32C24.84 32 32 24.84 32 16C32 7.16 24.84 0 16 0ZM16 4C18.21 4 20 5.79 20 8C20 10.21 18.21 12 16 12C13.79 12 12 10.21 12 8C12 5.79 13.79 4 16 4ZM16 27.2C12 27.2 8.4 25.2 6.4 22C6.4 18 14.4 15.8 16 15.8C17.6 15.8 25.6 18 25.6 22C23.6 25.2 20 27.2 16 27.2Z" fill="#AB0A3D"/>
+  </g>
+</svg>

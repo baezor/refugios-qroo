@@ -1,0 +1,65 @@
+---
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1); // remove the first "/"
+---
+
+<nav>
+  <div class="nav-container">
+    <a href="/" class={currentPath === "" ? "active" : ""}>
+      Refugios
+    </a>
+    <a href="/mapa" class={currentPath === "mapa" ? "active" : ""}>
+      Mapa
+    </a>
+    <a href="/colaborar" class={currentPath === "colaborar" ? "active" : ""}>
+      Colaborar
+    </a>
+  </div>
+</nav>
+
+<style>
+  nav {
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
+  }
+
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+
+  a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+
+  a:hover {
+    background-color: rgba(var(--accent-light), 0.2);
+  }
+
+  a.active {
+    color: rgb(var(--accent));
+    background-color: rgba(var(--accent-light), 0.2);
+  }
+
+  @media (max-width: 600px) {
+    .nav-container {
+      gap: 0.5rem;
+    }
+    
+    a {
+      font-size: 0.9rem;
+      padding: 0.5rem;
+    }
+  }
+</style>

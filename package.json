@@ -8,11 +8,14 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "generate-shelters": "npx tsx shelters.ts"
+    "generate-shelters": "npx tsx shelters.ts",
+    "get-locations": "node getLocations.js"
   },
   "dependencies": {
     "@astrojs/check": "^0.7.0",
     "astro": "^4.11.5",
+    "dotenv": "^16.4.7",
+    "sharp": "^0.33.5",
     "typescript": "^5.5.3"
   },
   "devDependencies": {
