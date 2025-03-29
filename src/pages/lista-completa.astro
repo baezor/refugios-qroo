@@ -1,0 +1,268 @@
+---
+import Layout from "../layouts/Layout.astro";
+import shelters from "../../public/shelters.json";
+import { slugify } from "../utils/slugify";
+
+const totalShelters = shelters.length;
+const municipalities = [...new Set(shelters.map(shelter => shelter.MUNICIPIO))].sort();
+const sortedShelters = [...shelters].sort((a, b) => a.EDIFICIO.localeCompare(b.EDIFICIO));
+
+// Create structured data for the page
+const pageTitle = "Lista Completa de Albergues y Refugios de Quintana Roo";
+const pageDescription = `Directorio completo de ${totalShelters} albergues y refugios en Quintana Roo, México. Información actualizada para situaciones de emergencia con ubicaciones y detalles de contacto.`;
+
+// Create JSON-LD structured data
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": pageTitle,
+  "description": pageDescription,
+  "numberOfItems": totalShelters,
+  "itemListElement": sortedShelters.slice(0, 10).map((shelter, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "item": {
+      "@type": "CivicStructure",
+      "name": shelter.EDIFICIO,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": shelter.LOCALIDAD,
+        "addressRegion": "Quintana Roo",
+        "addressCountry": "MX",
+        "streetAddress": shelter.DOMICILIO
+      }
+    }
+  }))
+};
+---
+
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  type="website"
+  structuredData={structuredData}
+>
+  <main>
+    <div class="container">
+      <h1>Lista Completa de Albergues y Refugios de Quintana Roo</h1>
+      <p>
+        Actualmente se cuenta con la información de un total de
+        <strong>{totalShelters} refugios</strong>
+        de primera apertura en todo el estado de Quintana Roo
+      </p>
+
+      <div class="filter-section">
+        <div class="municipality-links">
+          <strong>Municipios:</strong>
+          {municipalities.map((municipality) => (
+            <a 
+              href={`/${slugify(municipality)}`}
+              class="municipality-link"
+            >
+              {municipality}
+            </a>
+          ))}
+        </div>
+
+        <div class="filter-container">
+          <label for="municipality-filter">Filtrar por municipio:</label>
+          <select id="municipality-filter" class="filter-select">
+            <option value="">Todos los municipios</option>
+            {municipalities.map((municipality) => (
+              <option value={municipality}>{municipality}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      <div class="shelters-grid" id="shelters-grid">
+        {
+          sortedShelters.map((shelter) => (
+            <div class="shelter-card" data-municipality={shelter.MUNICIPIO}>
+              <h2>{shelter.EDIFICIO}</h2>
+              <p class="location">
+                <strong>Municipio:</strong> {shelter.MUNICIPIO}
+              </p>
+              <p class="locality">
+                <strong>Localidad:</strong> {shelter.LOCALIDAD}
+              </p>
+              <p class="address">
+                <strong>Domicilio:</strong> {shelter.DOMICILIO}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script is:inline define:vars={{ shelters: sortedShelters }}>
+  // Make shelters data available globally
+  window.sheltersData = shelters;
+  
+  function initializeShelterCards() {
+    const municipalityFilter = document.getElementById('municipality-filter');
+    const sheltersGrid = document.getElementById('shelters-grid');
+    
+    // Check if we're on the right page before proceeding
+    if (!sheltersGrid) {
+      return; // Exit if we're not on the refugios page
+    }
+    
+    const shelterCards = document.querySelectorAll('.shelter-card');
+
+    // Add click handler to shelter cards
+    shelterCards.forEach((card, index) => {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', () => {
+        const shelter = window.sheltersData[index];
+        let mapsUrl;
+        
+        // If we have coordinates, use them directly
+        if (shelter.coordinates && shelter.coordinates.lat && shelter.coordinates.lng) {
+          mapsUrl = `https://www.google.com/maps/search/?api=1&query=${shelter.coordinates.lat},${shelter.coordinates.lng}`;
+        } else {
+          // Fall back to search query
+          const name = card.querySelector('h2')?.textContent || '';
+          const municipality = card.dataset.municipality || '';
+          const searchQuery = encodeURIComponent(`${name}, ${municipality}, Quintana Roo, Mexico`);
+          mapsUrl = `https://www.google.com/maps/search/?api=1&query=${searchQuery}`;
+        }
+        
+        window.open(mapsUrl, '_blank');
+      });
+    });
+
+    // Only add event listener if the element exists
+    if (municipalityFilter) {
+      municipalityFilter.addEventListener('change', (e) => {
+        const selectedMunicipality = e.target.value;
+        
+        shelterCards.forEach((card) => {
+          if (!selectedMunicipality || card.dataset.municipality === selectedMunicipality) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    }
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', initializeShelterCards);
+  // Initialize on Astro page changes
+  document.addEventListener('astro:page-load', initializeShelterCards);
+</script>
+
+<style>
+  main {
+    width: 100%;
+    min-height: 100dvh;
+    padding: 28px 28px 48px 28px;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    line-height: 1;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  p {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  a {
+    color: rgb(var(--accent));
+    text-decoration: underline;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .filter-section {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .municipality-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+
+  .municipality-link {
+    padding: 0.25rem 0.5rem;
+    background-color: rgba(var(--accent), 0.1);
+    border-radius: 0.25rem;
+    transition: background-color 0.2s ease;
+    &:hover {
+      background-color: rgba(var(--accent), 0.2);
+    }
+  }
+
+  .filter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .filter-select {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .shelters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .shelter-card {
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .shelter-card h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: rgb(var(--accent));
+  }
+
+  .shelter-card p {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    text-align: left;
+  }
+
+  @media (max-width: 768px) {
+    .shelters-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
