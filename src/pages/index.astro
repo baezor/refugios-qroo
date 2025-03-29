@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import shelters from "../../public/shelters.json";
 import { slugify } from "../utils/slugify";
+import "../styles/shelters.css";
 
 const totalShelters = shelters.length;
 const municipalities = [...new Set(shelters.map(shelter => shelter.MUNICIPIO))].sort();
@@ -44,16 +45,36 @@ const structuredData = {
 >
   <main>
     <div class="container">
-      <h1>Listado de albergues y refugios de Quintana Roo</h1>
+      <h1>Listado de albergues y refugios en Quintana Roo</h1>
       <p>
         Actualmente se cuenta con la información de un total de
-        <strong>{totalShelters} refugios</strong>
-        de primera apertura en todo el estado de Quintana Roo
+        <strong>{totalShelters} refugios</strong> en Quintana Roo
       </p>
 
+      <div class="actions-section">
+        <button id="find-nearest-shelter" class="action-button">
+          Localiza el refugio más cercano a ti
+        </button>
+        <p class="geolocation-notice">Para localizar el refugio más cercano a ti, por favor, da permiso al sitio web para acceder a tu ubicación.</p>
+      </div>
+
+      <!-- Nearest shelter result container -->
+      <div id="nearest-shelter-container" class="nearest-shelter-container hidden">
+        <div class="nearest-shelter-header">
+          <h2>Refugios más cercanos a tu ubicación</h2>
+          <button id="close-nearest-shelter" class="close-button" aria-label="Cerrar">&times;</button>
+        </div>
+        <div id="nearest-shelter-content" class="nearest-shelter-content">
+          <!-- Content will be populated by JavaScript -->
+        </div>
+        <div id="nearest-shelter-error" class="nearest-shelter-error hidden">
+          <!-- Error messages will be displayed here -->
+        </div>
+      </div>
+
       <div class="filter-section">
+        <p class="municipality-links-title"><strong>Lista de albergues y refugios por municipio:</strong></p>
         <div class="municipality-links">
-          <strong>Municipios:</strong>
           {municipalities.map((municipality) => (
             <a 
               href={`/${slugify(municipality)}`}
@@ -63,36 +84,8 @@ const structuredData = {
             </a>
           ))}
         </div>
-
-        <div class="filter-container">
-          <label for="municipality-filter">Filtrar por municipio:</label>
-          <select id="municipality-filter" class="filter-select">
-            <option value="">Todos los municipios</option>
-            {municipalities.map((municipality) => (
-              <option value={municipality}>{municipality}</option>
-            ))}
-          </select>
-        </div>
       </div>
-
-      <div class="shelters-grid" id="shelters-grid">
-        {
-          sortedShelters.map((shelter) => (
-            <div class="shelter-card" data-municipality={shelter.MUNICIPIO}>
-              <h2>{shelter.EDIFICIO}</h2>
-              <p class="location">
-                <strong>Municipio:</strong> {shelter.MUNICIPIO}
-              </p>
-              <p class="locality">
-                <strong>Localidad:</strong> {shelter.LOCALIDAD}
-              </p>
-              <p class="address">
-                <strong>Domicilio:</strong> {shelter.DOMICILIO}
-              </p>
-            </div>
-          ))
-        }
-      </div>
+     
     </div>
   </main>
 </Layout>
@@ -101,59 +94,195 @@ const structuredData = {
   // Make shelters data available globally
   window.sheltersData = shelters;
   
-  function initializeShelterCards() {
-    const municipalityFilter = document.getElementById('municipality-filter');
-    const sheltersGrid = document.getElementById('shelters-grid');
+  document.addEventListener('DOMContentLoaded', initializeGeolocation);
+  document.addEventListener('astro:page-load', initializeGeolocation);
+  
+  function initializeGeolocation() {
+    const findNearestButton = document.getElementById('find-nearest-shelter');
+    const nearestShelterContainer = document.getElementById('nearest-shelter-container');
+    const nearestShelterContent = document.getElementById('nearest-shelter-content');
+    const nearestShelterError = document.getElementById('nearest-shelter-error');
+    const closeButton = document.getElementById('close-nearest-shelter');
     
-    // Check if we're on the right page before proceeding
-    if (!sheltersGrid) {
-      return; // Exit if we're not on the refugios page
+    if (!findNearestButton) return;
+    
+    // Add click event to find nearest shelter button
+    findNearestButton.addEventListener('click', () => {
+      // Show loading state
+      nearestShelterContainer.classList.remove('hidden');
+      nearestShelterError.classList.add('hidden');
+      nearestShelterContent.innerHTML = '<div class="loading">Buscando refugios cercanos...</div>';
+      
+      // Check if geolocation is available
+      if (!navigator.geolocation) {
+        showError('La geolocalización no está disponible en tu navegador.');
+        return;
+      }
+      
+      // Request user's location
+      navigator.geolocation.getCurrentPosition(
+        // Success callback
+        position => {
+          const userLocation = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          
+          findNearestShelters(userLocation);
+        },
+        // Error callback
+        error => {
+          let errorMessage = '';
+          
+          switch(error.code) {
+            case error.PERMISSION_DENIED:
+              errorMessage = 'Acceso a la ubicación denegado. Por favor, permite el acceso a tu ubicación para encontrar el refugio más cercano.';
+              break;
+            case error.POSITION_UNAVAILABLE:
+              errorMessage = 'La información de ubicación no está disponible en este momento.';
+              break;
+            case error.TIMEOUT:
+              errorMessage = 'La solicitud de ubicación ha expirado.';
+              break;
+            default:
+              errorMessage = 'Ha ocurrido un error desconocido al obtener tu ubicación.';
+          }
+          
+          showError(errorMessage);
+        },
+        // Options
+        {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 0
+        }
+      );
+    });
+    
+    // Add click event to close button
+    if (closeButton) {
+      closeButton.addEventListener('click', () => {
+        nearestShelterContainer.classList.add('hidden');
+      });
     }
     
-    const shelterCards = document.querySelectorAll('.shelter-card');
-
-    // Add click handler to shelter cards
-    shelterCards.forEach((card, index) => {
-      card.style.cursor = 'pointer';
-      card.addEventListener('click', () => {
-        const shelter = window.sheltersData[index];
-        let mapsUrl;
+    // Function to show error messages
+    function showError(message) {
+      nearestShelterError.textContent = message;
+      nearestShelterError.classList.remove('hidden');
+      nearestShelterContent.innerHTML = '';
+    }
+    
+    // Function to find the nearest shelters
+    function findNearestShelters(userLocation) {
+      // Check if we have shelter data
+      if (!window.sheltersData || window.sheltersData.length === 0) {
+        showError('No se encontraron datos de refugios.');
+        return;
+      }
+      
+      // Array to store shelters with their distances
+      const sheltersWithDistances = [];
+      
+      // Calculate distance to each shelter
+      window.sheltersData.forEach(shelter => {
+        // Try to get coordinates from shelter data
+        let shelterCoords;
         
-        // If we have coordinates, use them directly
         if (shelter.coordinates && shelter.coordinates.lat && shelter.coordinates.lng) {
-          mapsUrl = `https://www.google.com/maps/search/?api=1&query=${shelter.coordinates.lat},${shelter.coordinates.lng}`;
-        } else {
-          // Fall back to search query
-          const name = card.querySelector('h2')?.textContent || '';
-          const municipality = card.dataset.municipality || '';
-          const searchQuery = encodeURIComponent(`${name}, ${municipality}, Quintana Roo, Mexico`);
-          mapsUrl = `https://www.google.com/maps/search/?api=1&query=${searchQuery}`;
+          shelterCoords = {
+            lat: parseFloat(shelter.coordinates.lat),
+            lng: parseFloat(shelter.coordinates.lng)
+          };
+          
+          // Calculate distance between user and shelter
+          const distance = calculateDistance(
+            userLocation.lat, userLocation.lng,
+            shelterCoords.lat, shelterCoords.lng
+          );
+          
+          // Add to array with distance
+          sheltersWithDistances.push({
+            ...shelter,
+            distance: distance
+          });
         }
-        
-        window.open(mapsUrl, '_blank');
       });
-    });
-
-    // Only add event listener if the element exists
-    if (municipalityFilter) {
-      municipalityFilter.addEventListener('change', (e) => {
-        const selectedMunicipality = e.target.value;
+      
+      // Sort shelters by distance (closest first)
+      sheltersWithDistances.sort((a, b) => a.distance - b.distance);
+      
+      // Get the three nearest shelters (or fewer if less are available)
+      const nearestShelters = sheltersWithDistances.slice(0, 3);
+      
+      // Display the nearest shelters
+      if (nearestShelters.length > 0) {
+        // Create HTML for each shelter
+        const sheltersHTML = nearestShelters.map((shelter, index) => {
+          // Format distance for display
+          const formattedDistance = formatDistance(shelter.distance);
+          const orderLabel = index === 0 ? 'Más cercano' : `Opción ${index + 1}`;
+          
+          return `
+            <div class="shelter-card ${index === 0 ? 'primary-shelter' : ''}">
+              <div class="shelter-order">${orderLabel}</div>
+              <h3>${shelter.EDIFICIO}</h3>
+              <p class="distance"><strong>Distancia:</strong> ${formattedDistance}</p>
+              <p><strong>Municipio:</strong> ${shelter.MUNICIPIO}</p>
+              <p><strong>Localidad:</strong> ${shelter.LOCALIDAD}</p>
+              <p><strong>Domicilio:</strong> ${shelter.DOMICILIO}</p>
+              <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                `${shelter.EDIFICIO}, ${shelter.MUNICIPIO}, Quintana Roo, Mexico`
+              )}" class="directions-button" target="_blank" rel="noopener noreferrer">
+                Ver indicaciones
+              </a>
+            </div>
+          `;
+        }).join('');
         
-        shelterCards.forEach((card) => {
-          if (!selectedMunicipality || card.dataset.municipality === selectedMunicipality) {
-            card.style.display = 'block';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
+        nearestShelterContent.innerHTML = `
+          <div class="shelters-grid">
+            ${sheltersHTML}
+          </div>
+        `;
+      } else {
+        showError('No se pudieron encontrar refugios cercanos con coordenadas disponibles.');
+      }
+    }
+    
+    // Function to calculate distance between two points using Haversine formula
+    function calculateDistance(lat1, lon1, lat2, lon2) {
+      const R = 6371; // Radius of the Earth in kilometers
+      const dLat = deg2rad(lat2 - lat1);
+      const dLon = deg2rad(lon2 - lon1);
+      
+      const a = 
+        Math.sin(dLat/2) * Math.sin(dLat/2) +
+        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+        Math.sin(dLon/2) * Math.sin(dLon/2);
+      
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+      const distance = R * c; // Distance in kilometers
+      
+      return distance;
+    }
+    
+    // Function to convert degrees to radians
+    function deg2rad(deg) {
+      return deg * (Math.PI/180);
+    }
+    
+    // Function to format distance for display
+    function formatDistance(distance) {
+      if (distance < 1) {
+        // Convert to meters if less than 1 km
+        return `${Math.round(distance * 1000)} metros`;
+      } else {
+        // Display in kilometers with one decimal place
+        return `${distance.toFixed(1)} km`;
+      }
     }
   }
-
-  // Initialize on page load
-  document.addEventListener('DOMContentLoaded', initializeShelterCards);
-  // Initialize on Astro page changes
-  document.addEventListener('astro:page-load', initializeShelterCards);
 </script>
 
 <style>
@@ -181,6 +310,13 @@ const structuredData = {
     text-align: center;
   }
 
+  .municipality-links-title {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    margin-bottom: 0;
+    text-align: center;
+  }
+
   a {
     color: rgb(var(--accent));
     text-decoration: underline;
@@ -200,71 +336,52 @@ const structuredData = {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    align-items: center;
+    justify-content: center;
   }
 
   .municipality-link {
-    display: inline-block;
-    padding: 0.3rem 0.8rem;
-    border-radius: 4px;
-    background-color: #f0f0f0;
-    color: rgb(var(--accent));
-    text-decoration: none;
-    font-size: 0.9rem;
+    padding: 0.25rem 0.5rem;
+    background-color: rgba(var(--accent), 0.1);
+    border-radius: 0.25rem;
     transition: background-color 0.2s ease;
-
     &:hover {
-      background-color: #e0e0e0;
+      background-color: rgba(var(--accent), 0.2);
     }
   }
 
-  .filter-container {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  .actions-section {
+    text-align: center;
+    margin: 2rem 0;
   }
 
-  .filter-select {
-    padding: 0.5rem;
-    border-radius: 4px;
-    border: 1px solid #ddd;
+  .action-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: rgb(var(--accent));
+    color: white;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
     font-size: 1rem;
-    max-width: 300px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    &:hover {
+      background-color: rgb(var(--accent-dark, var(--accent)));
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
   }
 
-  .shelters-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
+  .geolocation-notice {
+    font-size: 0.85rem;
+    margin: 1rem 0;
   }
 
-  .shelter-card {
-    background: #f8f9fa;
-    border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: transform 0.2s ease-in-out;
-  }
-
-  .shelter-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  .shelter-card h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: rgb(var(--accent));
-  }
-
-  .shelter-card p {
-    font-size: 1rem;
-    text-align: left;
-    margin-bottom: 0.5rem;
-
-    &:last-child {
-      margin-bottom: 0;
+  @media (max-width: 768px) {
+    .actions-section {
+      flex-direction: column;
+      align-items: center;
     }
   }
 </style>

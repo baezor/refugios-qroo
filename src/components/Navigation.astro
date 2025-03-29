@@ -11,9 +11,6 @@ const currentPath = pathname.slice(1); // remove the first "/"
     <a href="/mapa" class={currentPath === "mapa" ? "active" : ""}>
       Mapa
     </a>
-    <a href="/colaborar" class={currentPath === "colaborar" ? "active" : ""}>
-      Colaborar
-    </a>
   </div>
 </nav>
 
@@ -22,14 +19,17 @@ const currentPath = pathname.slice(1); // remove the first "/"
     background-color: #fff;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
 
   .nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
     display: flex;
     justify-content: center;
     gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 0 1rem;
   }
 
@@ -39,26 +39,28 @@ const currentPath = pathname.slice(1); // remove the first "/"
     font-weight: 500;
     font-size: 1.1rem;
     padding: 0.5rem 1rem;
-    border-radius: 4px;
-    transition: background-color 0.2s;
+    border-radius: 0.25rem;
+    transition: all 0.2s ease;
   }
 
   a:hover {
-    background-color: rgba(var(--accent-light), 0.2);
+    color: #92153F;
+    background-color: rgba(146, 21, 63, 0.05);
   }
 
   a.active {
-    color: rgb(var(--accent));
-    background-color: rgba(var(--accent-light), 0.2);
+    color: #92153F;
+    font-weight: 700;
+    border-bottom: 2px solid #92153F;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
     .nav-container {
-      gap: 0.5rem;
+      gap: 1rem;
     }
-    
+
     a {
-      font-size: 0.9rem;
+      font-size: 1rem;
       padding: 0.5rem;
     }
   }
