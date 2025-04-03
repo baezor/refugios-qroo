@@ -23,7 +23,7 @@ const { municipality, shelters: municipalityShelters, lang: propLang } = Astro.p
 const totalShelters = municipalityShelters.length;
 
 // Get language from URL (fallback to prop language if provided)
-const lang = propLang || getLangFromUrl(Astro.url);
+const lang = (propLang || getLangFromUrl(Astro.url)) as import('../i18n/ui').Language;
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 
