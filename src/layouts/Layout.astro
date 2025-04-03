@@ -87,7 +87,7 @@ const localeContent = lang === 'es' ? 'es_MX' : 'en_US';
     
     {/* Add JSON-LD structured data if provided */}
     {structuredData && (
-      <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     )}
     
     <ViewTransitions />

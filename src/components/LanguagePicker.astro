@@ -10,7 +10,7 @@ const translatePath = useTranslatedPath(currentLang);
 <div class="language-picker">
   {Object.entries(languages).map(([lang, label]) => (
     <a 
-      href={translatePath('/', lang)}
+      href={translatePath('/', lang as import('../i18n/ui').Language)}
       class={currentLang === lang ? 'active' : ''}
       aria-label={`Change language to ${label}`}
     >

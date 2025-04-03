@@ -10,7 +10,6 @@ const { shelters } = Astro.props;
 
 // Get language from URL
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 
 // Filter shelters that have coordinates
 const sheltersWithCoordinates = shelters.filter(shelter => 
