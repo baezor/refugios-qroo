@@ -1,0 +1,52 @@
+---
+import { languages } from '../i18n/ui';
+import { getLangFromUrl, useTranslatedPath } from '../i18n/utils';
+
+const url = Astro.url;
+const currentLang = getLangFromUrl(url);
+const translatePath = useTranslatedPath(currentLang);
+---
+
+<div class="language-picker">
+  {Object.entries(languages).map(([lang, label]) => (
+    <a 
+      href={translatePath('/', lang)}
+      class={currentLang === lang ? 'active' : ''}
+      aria-label={`Change language to ${label}`}
+    >
+      {label}
+    </a>
+  ))}
+</div>
+
+<style>
+  .language-picker {
+    display: flex;
+    gap: 0.8rem;
+  }
+
+  a {
+    color: #333;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.25rem;
+    transition: all 0.2s ease;
+  }
+
+  a:hover {
+    color: #92153F;
+    background-color: rgba(146, 21, 63, 0.05);
+  }
+
+  a.active {
+    color: #92153F;
+    font-weight: 700;
+  }
+
+  @media (max-width: 768px) {
+    .language-picker {
+      gap: 0.5rem;
+    }
+  }
+</style>

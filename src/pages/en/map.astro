@@ -1,8 +1,8 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import ShelterMap from "../components/ShelterMap.astro";
-import shelters from "../../public/shelters.json";
-import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
+import Layout from "../../layouts/Layout.astro";
+import ShelterMap from "../../components/ShelterMap.astro";
+import shelters from "../../../public/shelters.json";
+import { getLangFromUrl, useTranslations, useTranslatedPath } from '../../i18n/utils';
 
 // Get language from URL
 const lang = getLangFromUrl(Astro.url);

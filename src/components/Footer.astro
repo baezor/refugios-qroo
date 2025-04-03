@@ -1,13 +1,29 @@
-<footer aria-label="Información del sitio">
-  <p>
-    Este es un proyecto de <a
-      target="_blank"
-      rel="noopener"
-      href="https://github.com/baezor/refugios-qroo">código abierto</a
-    > y sin fines de lucro desarrollado por <a
-      href="https://angelromerobaez.com">Angel Romero Baez</a
-    >
-  </p>
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+// Define translations for the footer content
+const footerText = {
+  es: `Este es un proyecto de <a 
+      target="_blank" 
+      rel="noopener" 
+      href="https://github.com/baezor/refugios-qroo">código abierto</a> 
+    y sin fines de lucro desarrollado por <a 
+      href="https://angelromerobaez.com">Angel Romero Baez</a>`,
+  en: `This is a <a 
+      target="_blank" 
+      rel="noopener" 
+      href="https://github.com/baezor/refugios-qroo">open-source</a> 
+    non-profit project developed by <a 
+      href="https://angelromerobaez.com">Angel Romero Baez</a>`
+};
+
+const footerLabel = lang === 'es' ? 'Información del sitio' : 'Site information';
+---
+
+<footer aria-label={footerLabel}>
+  <p set:html={footerText[lang]} />
 </footer>
 
 <style>

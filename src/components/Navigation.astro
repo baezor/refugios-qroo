@@ -1,16 +1,34 @@
 ---
+import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
+import LanguagePicker from './LanguagePicker.astro';
+
 const pathname = new URL(Astro.request.url).pathname;
-const currentPath = pathname.slice(1); // remove the first "/"
+let currentPath = pathname.slice(1); // remove the first "/"
+
+// Get the current language from the URL
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+
+// If the path starts with the current language, remove it
+if (currentPath.startsWith(`${lang}/`)) {
+  currentPath = currentPath.slice(lang.length + 1); // +1 for the slash
+} else if (currentPath === lang) {
+  currentPath = "";
+}
 ---
 
 <nav>
   <div class="nav-container">
-    <a href="/" class={currentPath === "" ? "active" : ""}>
-      Refugios
-    </a>
-    <a href="/mapa" class={currentPath === "mapa" ? "active" : ""}>
-      Mapa
-    </a>
+    <div class="nav-links">
+      <a href={translatePath('/')} class={currentPath === "" ? "active" : ""}>
+        {t('nav.shelters')}
+      </a>
+      <a href={translatePath(lang === 'en' ? '/map' : '/mapa')} class={currentPath === (lang === 'en' ? "map" : "mapa") ? "active" : ""}>
+        {t('nav.map')}
+      </a>
+    </div>
+    <LanguagePicker />
   </div>
 </nav>
 
@@ -26,11 +44,16 @@ const currentPath = pathname.slice(1); // remove the first "/"
 
   .nav-container {
     display: flex;
-    justify-content: center;
-    gap: 2rem;
+    justify-content: space-between;
+    align-items: center;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
   }
 
   a {
@@ -55,7 +78,7 @@ const currentPath = pathname.slice(1); // remove the first "/"
   }
 
   @media (max-width: 768px) {
-    .nav-container {
+    .nav-links {
       gap: 1rem;
     }
 

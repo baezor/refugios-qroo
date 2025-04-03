@@ -45,6 +45,29 @@ Este proyecto está construido con [Astro](https://astro.build/), un framework p
 5. Realiza los cambios necesarios.
 6. Envía un pull request con tus cambios.
 
+### Internacionalización (i18n)
+
+El sitio web cuenta con soporte para múltiples idiomas:
+
+- Español (idioma predeterminado)
+- Inglés
+
+La implementación utiliza el sistema de i18n integrado en Astro:
+
+- Los archivos de traducción se encuentran en `src/i18n/ui.ts`.
+- Las utilidades para la internacionalización están en `src/i18n/utils.ts`.
+- Las páginas en español están en la carpeta raíz `src/pages/`.
+- Las páginas en inglés están en `src/pages/en/`.
+
+Para añadir un nuevo idioma:
+
+1. Agrega el idioma a la configuración en `astro.config.mjs`.
+2. Agrega las traducciones en `src/i18n/ui.ts`.
+3. Crea una carpeta para el nuevo idioma en `src/pages/`.
+4. Copia las páginas desde la carpeta raíz y adáptalas según sea necesario.
+
+El sitio web usa URL limpias para el idioma predeterminado (español) y prefijos de idioma para los demás idiomas (/en/).
+
 ### 🧞 Comandos
 
 Todos los comandos se ejecutan desde la carpeta raíz del proyecto en la terminal:
