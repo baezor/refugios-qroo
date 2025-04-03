@@ -1,29 +1,27 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import shelters from "../../public/shelters.json";
-import { slugify } from "../utils/slugify";
-import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
+import Layout from "../../layouts/Layout.astro";
+import shelters from "../../../public/shelters.json";
+import { slugify } from "../../utils/slugify";
+import { getLangFromUrl, useTranslations, useTranslatedPath } from '../../i18n/utils';
 
 export async function getStaticPaths() {
   const municipalities = [...new Set(shelters.map(shelter => shelter.MUNICIPIO))].sort();
   
   return municipalities.map(municipality => ({
-    // Default language route (Spanish) without prefix
     params: { municipality: slugify(municipality) },
     props: { 
       municipality,
       shelters: shelters.filter(shelter => shelter.MUNICIPIO === municipality)
-        .sort((a, b) => a.EDIFICIO.localeCompare(b.EDIFICIO)),
-      lang: 'es'
+        .sort((a, b) => a.EDIFICIO.localeCompare(b.EDIFICIO))
     }
   }));
 }
 
-const { municipality, shelters: municipalityShelters, lang: propLang } = Astro.props;
+const { municipality, shelters: municipalityShelters } = Astro.props;
 const totalShelters = municipalityShelters.length;
 
-// Get language from URL (fallback to prop language if provided)
-const lang = propLang || getLangFromUrl(Astro.url);
+// Get language from URL
+const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 

@@ -2,6 +2,9 @@
 import { ViewTransitions } from "astro:transitions";
 import Footer from "../components/Footer.astro";
 import Navigation from "../components/Navigation.astro";
+import { getLangFromUrl, getAlternateLanguageLinks } from "../i18n/utils";
+import { defaultLang, languages } from "../i18n/ui";
+
 interface Props {
   title: string;
   description?: string;
@@ -19,10 +22,19 @@ const {
   type = 'website',
   structuredData = null
 } = Astro.props;
+
+// Get the current language from the URL
+const lang = getLangFromUrl(Astro.url);
+
+// Get alternate language links for SEO
+const alternateLinks = getAlternateLanguageLinks(Astro.url);
+
+// Set the appropriate locale content based on language
+const localeContent = lang === 'es' ? 'es_MX' : 'en_US';
 ---
 
 <!doctype html>
-<html lang="es_MX">
+<html lang={localeContent}>
   <head>
     <!-- Basic Meta Tags -->
     <meta charset="UTF-8" />
@@ -35,6 +47,12 @@ const {
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalURL} />
     
+    <!-- Alternate language links for SEO -->
+    {Object.entries(alternateLinks).map(([language, url]) => (
+      <link rel="alternate" href={url} hreflang={language === 'es' ? 'es-mx' : 'en'} />
+    ))}
+    <link rel="alternate" href={alternateLinks[defaultLang]} hreflang="x-default" />
+    
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -45,7 +63,12 @@ const {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, Astro.url)} />
-    <meta property="og:locale" content="es_MX" />
+    <meta property="og:locale" content={localeContent} />
+    
+    <!-- Alternate locales for Open Graph -->
+    {Object.keys(languages).filter(l => l !== lang).map(l => (
+      <meta property="og:locale:alternate" content={l === 'es' ? 'es_MX' : 'en_US'} />
+    ))}
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
